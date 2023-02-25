@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testExecutions version="1">
+  <file path="D:\mystudy-material\eIRed-todo-Ass\node-assingment-todo-final-2 (1)\node-assingment-todo\build\src\test\database\connection.test.js">
+    <testCase name="Database Test connection" duration="712"/>
+  </file>
+  <file path="D:\mystudy-material\eIRed-todo-Ass\node-assingment-todo-final-2 (1)\node-assingment-todo\src\test\database\connection.test.ts">
+    <testCase name="Database Test connection" duration="557"/>
+  </file>
+  <file path="D:\mystudy-material\eIRed-todo-Ass\node-assingment-todo-final-2 (1)\node-assingment-todo\src\test\api\users.test.ts">
+    <testCase name="Users Create user response 201 if success" duration="2864"/>
+    <testCase name="Users Create user password 400 if email field is empty" duration="31"/>
+    <testCase name="Users Create user response 400 if password field is empty" duration="23"/>
+    <testCase name="Users Create user response 400 if username field is empty" duration="20"/>
+    <testCase name="Users Create user response 400 if email is invalid" duration="26"/>
+    <testCase name="Users Create user response 400 if password is less than 4 letter" duration="26"/>
+    <testCase name="Users Create user response 400 if password is greater than 20 letter" duration="22"/>
+    <testCase name="Users Get user response 200 with list of users when get all users" duration="58"/>
+  </file>
+  <file path="D:\mystudy-material\eIRed-todo-Ass\node-assingment-todo-final-2 (1)\node-assingment-todo\build\src\test\api\users.test.js">
+    <testCase name="Users Create user response 201 if success" duration="234"/>
+    <testCase name="Users Create user password 400 if email field is empty" duration="27"/>
+    <testCase name="Users Create user response 400 if password field is empty" duration="42"/>
+    <testCase name="Users Create user response 400 if username field is empty" duration="29"/>
+    <testCase name="Users Create user response 400 if email is invalid" duration="24"/>
+    <testCase name="Users Create user response 400 if password is less than 4 letter" duration="32"/>
+    <testCase name="Users Create user response 400 if password is greater than 20 letter" duration="19"/>
+    <testCase name="Users Create user response 400 if email not available" duration="6316">
+      <failure message="Error: expected 400 &quot;Bad Request&quot;, got 201 &quot;Created&quot;"><![CDATA[Error: expected 400 "Bad Request", got 201 "Created"
+    at Test.Object.<anonymous>.Test._assertStatus (D:\mystudy-material\eIRed-todo-Ass\node-assingment-todo-final-2 (1)\node-assingment-todo\node_modules\supertest\lib\test.js:268:12)
+    at Test.Object.<anonymous>.Test._assertFunction (D:\mystudy-material\eIRed-todo-Ass\node-assingment-todo-final-2 (1)\node-assingment-todo\node_modules\supertest\lib\test.js:283:11)
+    at Test.Object.<anonymous>.Test.assert (D:\mystudy-material\eIRed-todo-Ass\node-assingment-todo-final-2 (1)\node-assingment-todo\node_modules\supertest\lib\test.js:173:18)
+    at Server.localAssert (D:\mystudy-material\eIRed-todo-Ass\node-assingment-todo-final-2 (1)\node-assingment-todo\node_modules\supertest\lib\test.js:131:12)
+    at Object.onceWrapper (node:events:627:28)
+    at Server.emit (node:events:513:28)
+    at emitCloseNT (node:net:1880:8)
+    at processTicksAndRejections (node:internal/process/task_queues:81:21)]]></failure>
+    </testCase>
+    <testCase name="Users Get user response 200 with list of users when get all users" duration="67"/>
+  </file>
+</testExecutions>

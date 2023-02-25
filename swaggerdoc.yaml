@@ -1,0 +1,386 @@
+swagger: "2.0"
+info:
+  description: "This is a sample server TODO server.  You can find out more about Swagger at <a href=\"http://swagger.io\">http://swagger.io</a> or on irc.freenode.net, #swagger.  For this sample, you can use the api key \"special-key\" to test the authorization filters"
+  version: 1.0.0
+  title: Swagger TODO YAML
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "apiteam@swagger.io"
+  license:
+    name: Apache 2.0
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "localhost:3000"
+basePath:
+tags:
+  - name: User
+    description: Everything about your users
+    externalDocs:
+      description: Find out more
+      url: "http://swagger.io"
+  - name: Task
+    description: Operations about Task
+schemes:
+  - http
+paths:
+  /user:
+    post:
+      tags:
+        - User
+      summary: create new user
+      x-swagger-router-controller: SampleController
+      description: ""
+      operationId: newUser
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: user object that needs to be added to the store
+          required: false
+          schema:
+            $ref: "#/definitions/user"
+      responses:
+        "200":
+          description: successful operation
+        "201":
+          description: user created successfully            
+        "400":
+          description: Invalid status value            
+  /login:
+    post:
+      tags:
+        - User
+      summary: login user
+      description: user credentials for login
+      operationId: 
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: RequestBody
+          description: user login.
+          schema:
+            type: object
+            required:
+              - email
+              - password
+            properties:
+              email:
+                type: string
+                example: chaudhariniketa31394@gmail.com
+              password:
+                type: string
+                example: niketa31@
+      responses:
+        "200":
+          description: login successfully
+        "400":
+          description: Invalid status value               
+  /sendotp:
+    post:
+      tags:
+        - User
+      summary: send otp on email
+      description: send otp on email
+      operationId: send otp on email
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - in: header
+          name: x-access-token
+          type: bearer      
+        - in: body
+          name: RequestBody
+          description: validate user.
+          schema:
+            type: object
+            required:
+              - email
+            properties:
+              email:
+                type: string
+                example: chaudhariniketa31394@gmail.com
+      responses:
+        "200":
+          description: OTP sent successfully
+        "400":
+          description: Invalid status value     
+  /validateotp:
+    post:
+      tags:
+        - User
+      summary: validate user by otp
+      description: validate user by otp
+      operationId: validate user by otp
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - in: header
+          name: x-access-token
+          type: bearer      
+        - in: body
+          name: RequestBody
+          description: validate user.
+          schema:
+            type: object
+            required:
+              - email
+              - otp
+            properties:
+              email:
+                type: string
+                example: chaudhariniketa31394@gmail.com
+              otp:
+                type: number
+                example: 123456
+      responses:
+        "200":
+          description: OTP validation successfully
+        "400":
+          description: Invalid status value              
+  "/users/{userId}":
+    get:
+      tags:
+        - User
+      summary: Find User by ID
+      description: Returns a single user
+      operationId: getUserById
+      consumes:
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: x-access-token
+          type: bearer    
+        - name: userId
+          in: path
+          description: ID of user to return
+          required: true
+          type: string
+      responses:
+        "200":
+          description: operation successful
+        "400":
+          description: Invalid status value 
+  /logout:
+    get:
+      tags:
+        - User
+      summary: Logout
+      description: Returns a single user
+      operationId: getUserById
+      consumes:
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: x-access-token
+          type: bearer    
+      responses:
+        "200":
+          description: user logout successful
+        "400":
+          description: Invalid status value 
+  /tasks:            
+    post: 
+      tags:
+        - Task
+      summary: get all task
+      x-swagger-router-controller: SampleController
+      description: ""
+      operationId: all task
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: x-access-token
+          type: bearer 
+        - name: RequestBody
+          in: body
+          description: request body
+          required: true                     
+          schema:
+            type : object
+            properties:
+              limit:
+                type: number
+                example: 20
+              pageNumber:
+                type: number 
+                example : 1
+              filterquery:
+                type: object 
+                example : {title:'Cooking'}
+      responses:
+        "200":
+          description: operation successful
+        "400":
+          description: Invalid status value                 
+  /task:
+    post:
+      tags:
+        - Task
+      summary: Add a new task in todo list
+      x-swagger-router-controller: SampleController
+      description: ""
+      operationId: add task
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: x-access-token
+          type: bearer             
+        - in: body
+          name: body
+          description: create task request body
+          required: true
+          schema:
+            $ref: "#/definitions/task"
+      responses:
+        "201":
+          description: task created
+        "400":
+          description: Invalid status value 
+        "404":
+          description: Invalid paramter value           
+    put:
+      tags:
+        - Task
+      summary: update task by id
+      x-swagger-router-controller: SampleController
+      description: ""
+      operationId: update task
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: x-access-token
+          type: bearer  
+        - in: body
+          name: RequestBody
+          description: task object that needs to be added to the updated
+          required: true          
+          schema:
+            type: object
+            required:
+              - title
+              - description
+              - taskid
+            properties:
+              title:
+                type: string
+              description:
+                type: string  
+              status:
+                type: string  
+                example: Pending
+                enum: ["Completed", "InProgress", "Pending"]                
+              taskid:
+                type: string                         
+      responses:
+        "204":
+          description: task updated successfully       
+        "404":
+          description: Invalid Paramter value             
+    
+    delete:
+      tags:
+        - Task
+      summary: delete task by id
+      x-swagger-router-controller: SampleController
+      description: ""
+      operationId: delete task
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: x-access-token
+          type: bearer  
+        - in: path
+          name: taskId
+          description: Task object that needs to be deleted
+          required: false
+      responses:
+        "200":
+          description: operation successful
+        "400":
+          description: Invalid status value          
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+    BearerAuth:
+      type: http
+      scheme: bearer
+definitions:
+  user:
+    required:
+      - username
+      - email
+      - password
+    properties:
+      username:
+        type: string
+        example: niketachaudhari
+      email:
+        type: string
+        example: chaudhariniketa31394@gmail.com
+      password:
+        type: string
+        example : niketa312@@
+  ApiResponse:
+    properties:
+      code:
+        type: integer
+        format: int32
+      type:
+        type: string
+      message:
+        type: string
+    xml:
+      name: "##default"
+  task:
+    required:
+      - title
+      - description
+    properties:
+      title:
+        type: string
+        example: kitchen
+      description:
+        type: string
+        example: cooking   
+      status:
+        type: string
+        example: Pending
+        enum: ["Completed", "InProgress", "Pending"]       
+  ApiResponse:
+    properties:
+      code:
+        type: integer
+        format: int32
+      type:
+        type: string
+      message:
+        type: string
+    xml:
+      name: "##default"    
+externalDocs:
+  description: Find out more about Swagger
+  url: "http://swagger.io"

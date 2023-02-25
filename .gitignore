@@ -1,0 +1,6 @@
+node_modules
+.env
+build
+coverage
+logs
+jest-html-reporters-attach
